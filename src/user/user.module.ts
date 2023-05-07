@@ -5,11 +5,21 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { JwtStrategy } from '@app/auth/strategies/jwt.strategy';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { UserResolver } from './user.resolver';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), ConfigModule], // Import the ConfigModule here
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    ConfigModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+    }),
+  ], // Import the ConfigModule here
   controllers: [UserController],
-  providers: [UserService, JwtStrategy, ConfigService], // Add ConfigService to the providers array
+  providers: [UserService, JwtStrategy, ConfigService, UserResolver], // Add ConfigService to the providers array
   exports: [UserService],
 })
 export class UserModule {}

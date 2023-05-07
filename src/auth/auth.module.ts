@@ -5,6 +5,9 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from '@app/user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { AuthResolver } from './auth.resolver';
 
 @Module({
   imports: [
@@ -14,8 +17,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       signOptions: { expiresIn: '24h' },
     }),
     ConfigModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+    }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, ConfigService],
+  providers: [AuthService, JwtStrategy, ConfigService, AuthResolver],
 })
 export class AuthModule {}

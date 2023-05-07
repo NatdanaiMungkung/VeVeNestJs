@@ -72,3 +72,18 @@ export class TransferNftInput {
   @Field(() => Int)
   toUserId: number;
 }
+
+@InputType()
+export class CreateNftInput {
+  @Field(() => String)
+  name: string;
+
+  @Field(() => String)
+  blockchainLink: string;
+
+  @Field(() => String)
+  description: string;
+
+  @Field(() => String)
+  imageUrl: string;
+}
