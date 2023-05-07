@@ -8,8 +8,6 @@ import {
   Query,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { Roles } from '../decorators/roles.decorator';
-import { Role } from '../enums/role.enum';
 import { NftService } from './nft.service';
 import { PaginationDto } from '@app/dto/pagination.dto';
 import { CreateNftDto, PaginatedNftsDto } from './nft.dto';
@@ -21,7 +19,6 @@ export class NftController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  @Roles(Role.ADMIN)
   async create(@Body() createNftDto: CreateNftDto): Promise<void> {
     await this.nftService.create(createNftDto);
   }

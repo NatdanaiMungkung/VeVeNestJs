@@ -12,8 +12,6 @@ import { CreateNftInput, PaginatedNftsDto, TransferNftInput } from './nft.dto';
 import { PaginationDto } from '@app/dto/pagination.dto';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '@app/auth/jwt-auth.guard';
-import { Roles } from '@app/decorators/roles.decorator';
-import { Role } from '@app/enums/role.enum';
 
 @Resolver(Nft)
 export class NftResolver {
@@ -21,7 +19,6 @@ export class NftResolver {
 
   @Mutation(() => Nft)
   @UseGuards(JwtAuthGuard)
-  @Roles(Role.ADMIN)
   async createNft(
     @Args('createNftInput') createNftInput: CreateNftInput,
     @Context() context,
