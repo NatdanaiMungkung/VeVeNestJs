@@ -9,18 +9,6 @@ import { CreateUserDto } from './dto/user.dto';
 export class UserResolver {
   constructor(private readonly usersService: UserService) {}
 
-  @Query(() => User)
-  @UseGuards(JwtAuthGuard)
-  async getUserById(@Args('id') id: number): Promise<User> {
-    return await this.usersService.findById(id);
-  }
-
-  @Query(() => User)
-  @UseGuards(JwtAuthGuard)
-  async findByUsername(@Args('username') username: string): Promise<User> {
-    return await this.usersService.findByUsername(username);
-  }
-
   @Mutation(() => User)
   async createUser(
     @Args('createUserData') createUserData: CreateUserDto,
