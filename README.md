@@ -22,6 +22,20 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## Reason for this architecture
+
+- some of the options has been fixed by assignment (NestJS + typescript + mysql + graphql), however for the coding part, I separated by resolver and service layer, which I understand it's quite common for NestJS architecture, this will promote other dev to easily read and maintain
+- Jest has been used for unit test, it's the most popular one and it's the one that I familiar with, so again, it'll give more productivity for me to complete the assignment within short time and should be easy to maintain also by other dev
+
+## Improvement
+
+- role field in user entity, it should create separate table to save role data and refer as roleId instead.
+- it should have audit log to collect who login and calling which api
+- role permission should be utitlized and defined permission for each role
+- transfer nft should keep record, this can be used to investigate and display history
+- logging should return meaningful and severity, this will benefit when investigate
+- should containerized and deploy as docker image instead, this will help to run on kubernetes and help with scaling once it's deployed on prod
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
