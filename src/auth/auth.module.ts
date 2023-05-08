@@ -13,7 +13,7 @@ import { AuthResolver } from './auth.resolver';
   imports: [
     UserModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'mysecretkey',
+      secret: process.env.JWT_SECRET || 'secret',
       signOptions: { expiresIn: '24h' },
     }),
     ConfigModule,

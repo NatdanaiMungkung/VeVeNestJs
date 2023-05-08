@@ -7,6 +7,8 @@ import { JwtStrategy } from './auth/strategies/jwt.strategy';
 import { UserModule } from './user/user.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { User } from './user/entities/user.entity';
+import { Nft } from './nft/entities/nft.entity';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { AppService } from './app.service';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: ['dist/**/*.entity{.ts,.js}'],
+      entities: [User, Nft],
       synchronize: true,
     }),
     UserModule,
